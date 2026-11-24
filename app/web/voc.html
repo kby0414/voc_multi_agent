@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="게임 이용 중 겪은 불편을 간단하게 접수하는 고객 문의 페이지" />
+    <title>게임 고객 문의</title>
+    <link rel="stylesheet" href="/static/voc.css" />
+  </head>
+  <body>
+    <header class="customer-header">
+      <a class="customer-brand" href="/voc" aria-label="고객 문의 홈">
+        <span aria-hidden="true">V</span>
+        <strong>Project Arena 고객지원</strong>
+      </a>
+    </header>
+
+    <main class="customer-main">
+      <section class="customer-card" aria-labelledby="customer-title">
+        <div id="form-view">
+          <p class="eyebrow">CUSTOMER SUPPORT</p>
+          <h1 id="customer-title">불편하셨던 내용을<br />그대로 알려주세요.</h1>
+          <p class="intro">꼭 필요한 정보만 받고 빠르게 확인하겠습니다.</p>
+
+          <form id="voc-form">
+            <div class="select-grid">
+              <label>
+                <span>게임 이름</span>
+                <select id="game-name" name="game_name" required>
+                  <option value="Project Arena">Project Arena</option>
+                </select>
+              </label>
+              <label>
+                <span>플랫폼</span>
+                <select id="platform" name="platform" required>
+                  <option value="Windows">Windows</option>
+                  <option value="Android">Android</option>
+                  <option value="iOS">iOS</option>
+                  <option value="Steam Deck">Steam Deck</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="content-label">
+              <span>문의 내용</span>
+              <textarea
+                id="content"
+                name="content"
+                rows="8"
+                maxlength="10000"
+                placeholder="예: 게임 로그인을 하고 실행했는데 게임이 팅겨요."
+                required
+              ></textarea>
+            </label>
+            <p class="privacy-note">전화번호나 이메일을 적더라도 개인정보는 자동으로 가려집니다.</p>
+            <button id="submit-button" type="submit">문의 전송</button>
+          </form>
+        </div>
+
+        <div id="success-view" class="success-view" role="status" aria-live="polite" hidden>
+          <span class="success-icon" aria-hidden="true">✓</span>
+          <p class="eyebrow">RECEIVED</p>
+          <h1>문의가 정상적으로<br />접수되었습니다.</h1>
+          <p>남겨주신 내용은 담당자가 확인할 수 있도록 안전하게 전달했습니다.</p>
+          <dl>
+            <div><dt>접수번호</dt><dd id="receipt-number">—</dd></div>
+          </dl>
+          <button id="new-inquiry" class="secondary-button" type="button">새 문의 작성</button>
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+      </section>
+    </main>
+
+    <script src="/static/voc.js" defer></script>
+  </body>
+</html>

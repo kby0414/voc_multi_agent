@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+outputs/*.json
+.pytest_cache/
+data/*.db
+data/*.db-shm
+data/*.db-wal
+.codex_ppt_final/
+.codex_ppt_persona/
+deliverables/*.pptx
+!deliverables/VOC_멀티에이전트_발표자료_최종제출본.pptx

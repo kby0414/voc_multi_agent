@@ -1,0 +1,88 @@
+:root {
+  color-scheme: light;
+  --ink: #182136;
+  --muted: #68738b;
+  --line: #dfe5f0;
+  --blue: #4169e1;
+  --blue-dark: #3155c6;
+  --green: #16a776;
+}
+
+* { box-sizing: border-box; }
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(85, 123, 255, .13), transparent 26rem),
+    linear-gradient(150deg, #f8faff 0%, #eef3fb 100%);
+  font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+button, select, textarea { font: inherit; }
+.customer-header {
+  width: min(1080px, calc(100% - 40px));
+  height: 74px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customer-brand { display: flex; align-items: center; gap: 11px; font-size: 14px; }
+.customer-brand > span {
+  width: 35px; height: 35px; display: grid; place-items: center;
+  border-radius: 11px; color: white; font-weight: 900;
+  background: linear-gradient(145deg, #527cf1, #795be8);
+  box-shadow: 0 8px 22px rgba(65, 105, 225, .22);
+}
+.customer-main { min-height: calc(100vh - 74px); padding: 38px 20px 72px; }
+.customer-card {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 54px);
+  border: 1px solid rgba(207, 216, 232, .9);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 24px 70px rgba(38, 57, 94, .12);
+}
+.eyebrow { margin: 0 0 12px; color: var(--blue); font-size: 11px; font-weight: 900; letter-spacing: .16em; }
+h1 { margin: 0; font-size: clamp(32px, 6vw, 48px); line-height: 1.16; letter-spacing: -.045em; }
+.intro { margin: 18px 0 36px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+label { display: block; margin-bottom: 20px; }
+label > span { display: block; margin-bottom: 9px; font-size: 13px; font-weight: 800; }
+select, textarea {
+  width: 100%; border: 1px solid var(--line); border-radius: 13px;
+  outline: none; color: var(--ink); background: #fbfcff;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+select { height: 50px; padding: 0 14px; }
+textarea { min-height: 190px; padding: 16px; resize: vertical; line-height: 1.7; }
+select:focus, textarea:focus { border-color: var(--blue); background: white; box-shadow: 0 0 0 4px rgba(65, 105, 225, .11); }
+textarea::placeholder { color: #a2abbb; }
+.privacy-note { margin: -7px 0 21px; color: var(--muted); font-size: 11px; }
+#submit-button, .secondary-button {
+  width: 100%; min-height: 54px; border: 0; border-radius: 13px; cursor: pointer;
+  font-weight: 900; transition: transform .15s, opacity .2s, background .2s;
+}
+#submit-button { color: white; background: linear-gradient(135deg, #4775ed, #6757e8); box-shadow: 0 13px 30px rgba(65, 105, 225, .22); }
+#submit-button:hover { transform: translateY(-1px); }
+#submit-button:disabled { cursor: wait; opacity: .62; transform: none; }
+.success-view { padding: 28px 0 10px; text-align: center; }
+.success-icon { width: 62px; height: 62px; display: grid; place-items: center; margin: 0 auto 23px; border-radius: 50%; color: white; background: var(--green); font-size: 27px; font-weight: 900; box-shadow: 0 12px 30px rgba(22, 167, 118, .24); }
+.success-view > p:not(.eyebrow) { max-width: 450px; margin: 19px auto 28px; color: var(--muted); line-height: 1.7; }
+.success-view dl { margin: 0 0 22px; padding: 17px; border-radius: 13px; background: #f3f6fb; }
+.success-view dl div { display: flex; justify-content: space-between; gap: 16px; }
+.success-view dt { color: var(--muted); font-size: 12px; }.success-view dd { margin: 0; font-size: 13px; font-weight: 900; }
+.secondary-button { color: var(--blue); background: #eef3ff; }
+.secondary-button:hover { background: #e4ebff; }
+.form-error { margin: 16px 0 0; padding: 12px 14px; border-radius: 10px; color: #b42339; background: #fff0f2; font-size: 12px; }
+
+@media (max-width: 600px) {
+  .customer-header { width: calc(100% - 30px); height: 64px; }
+  .customer-main { min-height: calc(100vh - 64px); padding: 18px 12px 40px; }
+  .customer-card { padding: 28px 22px; border-radius: 22px; }
+  .select-grid { grid-template-columns: 1fr; gap: 0; }
+  .intro { margin-bottom: 28px; }
+}

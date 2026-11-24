@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="게임 VOC 이슈 현황과 해결 우선순위 대시보드" />
+    <title>게임 VOC 우선순위 대시보드</title>
+    <link rel="stylesheet" href="/static/dashboard.css" />
+  </head>
+  <body>
+    <div class="admin-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/admin" aria-label="관리자 대시보드">
+          <span class="brand-mark" aria-hidden="true">V</span>
+          <span><strong>VOC Control Room</strong><small>관리자 콘솔</small></span>
+        </a>
+        <nav class="side-nav" aria-label="관리자 메뉴">
+          <a class="active" href="/admin"><span>01</span>대시보드</a>
+          <a href="/admin/inbox"><span>02</span>실시간 문의함 <b id="sidebar-inbox-badge" hidden>0</b></a>
+          <a href="/admin#priorities"><span>03</span>해결 우선순위</a>
+          <a href="/admin#categories"><span>04</span>문의 유형 분석</a>
+          <a href="/admin#methodology"><span>05</span>분석 기준</a>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="/voc">고객 문의 화면</a>
+          <a href="/docs">API 문서</a>
+        </div>
+      </aside>
+
+      <main class="admin-content">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">ADMIN OVERVIEW</p>
+          <h1>먼저 해결할 문제를<br />데이터로 결정합니다.</h1>
+          <p class="hero-copy">
+            문의를 같은 문제끼리 묶고, 심각도·문의량·최근 증가 추세를 함께 계산한 결과입니다.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="run-analysis" class="button secondary" type="button">미분석 문의 분류</button>
+          <button id="recalculate" class="button primary" type="button">우선순위 다시 계산</button>
+          <p id="last-updated" aria-live="polite">데이터를 불러오는 중입니다.</p>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="핵심 지표">
+        <article class="metric-card accent-blue">
+          <span>전체 VOC</span><strong id="metric-vocs">—</strong><small>누적 문의 건수</small>
+        </article>
+        <article class="metric-card accent-violet">
+          <span>발견된 문제</span><strong id="metric-issues">—</strong><small>유사 문의 그룹</small>
+        </article>
+        <article class="metric-card accent-red">
+          <span>긴급 대응</span><strong id="metric-critical">—</strong><small>P0 · P1 문제</small>
+        </article>
+        <article class="metric-card accent-green">
+          <span>최근 급증</span><strong id="metric-growing">—</strong><small id="metric-growing-label">비교 데이터 없음</small>
+        </article>
+      </section>
+
+      <section id="priorities" class="panel priority-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">ACTION QUEUE</p><h2>해결 우선순위</h2></div>
+          <div class="legend" aria-label="우선순위 등급">
+            <span><i class="p0"></i>P0 긴급</span><span><i class="p1"></i>P1 높음</span>
+            <span><i class="p2"></i>P2 보통</span><span><i class="p3"></i>P3 관찰</span>
+          </div>
+        </div>
+        <div id="empty-state" class="empty-state" hidden>
+          <strong>계산된 순위가 없습니다.</strong>
+          <span>먼저 시연 데이터를 등록하거나 우선순위를 계산해 주세요.</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>순위</th><th>문제</th><th>등급</th><th>심각도</th><th>문의량</th><th>최근 추세</th><th>종합 점수</th></tr></thead>
+            <tbody id="priority-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="categories" class="dashboard-grid">
+        <article class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">DISTRIBUTION</p><h2>문의 유형별 분포</h2></div></div>
+          <div id="category-chart" class="category-chart" aria-label="문의 유형별 건수"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">TREND SIGNAL</p><h2>최근 7일 변화</h2></div></div>
+          <div id="trend-list" class="trend-list"></div>
+        </article>
+      </section>
+
+      <section id="methodology" class="formula-strip" aria-label="우선순위 산식">
+        <div><span>01</span><strong>심각도 60%</strong><small>영향·피해·복구·시간 민감도</small></div>
+        <b>+</b><div><span>02</span><strong>문의량 25%</strong><small>같은 문제의 누적 문의 수</small></div>
+        <b>+</b><div><span>03</span><strong>증가 추세 15%</strong><small>최근 7일과 직전 7일 비교</small></div>
+        <b>=</b><div class="formula-result"><span>결과</span><strong>해결 순위</strong><small>P0부터 P3까지</small></div>
+      </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/static/dashboard.js" defer></script>
+  </body>
+</html>

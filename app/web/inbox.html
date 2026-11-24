@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="방금 접수된 게임 VOC와 자동 분석 결과를 확인하는 관리자 문의함" />
+    <title>실시간 문의함 | VOC Control Room</title>
+    <link rel="stylesheet" href="/static/dashboard.css" />
+  </head>
+  <body>
+    <div class="admin-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/admin" aria-label="관리자 대시보드">
+          <span class="brand-mark" aria-hidden="true">V</span>
+          <span><strong>VOC Control Room</strong><small>관리자 콘솔</small></span>
+        </a>
+        <nav class="side-nav" aria-label="관리자 메뉴">
+          <a href="/admin"><span>01</span>대시보드</a>
+          <a class="active" href="/admin/inbox"><span>02</span>실시간 문의함 <b id="sidebar-inbox-badge" hidden>0</b></a>
+          <a href="/admin#priorities"><span>03</span>해결 우선순위</a>
+          <a href="/admin#categories"><span>04</span>문의 유형 분석</a>
+          <a href="/admin#methodology"><span>05</span>분석 기준</a>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="/voc">고객 문의 화면</a>
+          <a href="/docs">API 문서</a>
+        </div>
+      </aside>
+
+      <main class="admin-content inbox-content">
+        <section class="inbox-header">
+          <div>
+            <p class="eyebrow">LIVE INBOX</p>
+            <h1>실시간 문의함</h1>
+            <p class="hero-copy">고객이 작성한 내용과 자동 분석 결과를 한 화면에서 확인합니다.</p>
+          </div>
+          <div class="live-state"><i></i><span>5초마다 자동 갱신</span><small id="inbox-updated">연결 중</small></div>
+        </section>
+
+        <section class="inbox-layout" aria-label="문의 목록과 상세 내용">
+          <div class="inbox-list-panel">
+            <div class="inbox-list-heading">
+              <div><strong>최근 접수</strong><span id="inbox-total">—건</span></div>
+              <label><span class="sr-only">문의 검색</span><input id="inbox-search" type="search" placeholder="내용·게임·접수번호 검색" /></label>
+            </div>
+            <div id="inbox-list" class="inbox-list" aria-live="polite"></div>
+          </div>
+
+          <article id="inbox-detail" class="inbox-detail panel" aria-live="polite">
+            <div class="detail-placeholder">
+              <span>←</span><strong>확인할 문의를 선택하세요.</strong><small>접수 내용과 분석 결과가 여기에 표시됩니다.</small>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/inbox.js" defer></script>
+  </body>
+</html>
